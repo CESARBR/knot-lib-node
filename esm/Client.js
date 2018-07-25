@@ -30,6 +30,19 @@ function toGatewayUuid(uuid) {
   return `${uuid.substr(0, uuid.length - 4)}0000`;
 }
 
+function mapData(data) {
+  const newData = _.omit(data, [
+    'uuid',
+    'source',
+    '_id',
+  ]);
+  newData.data = _.omit(newData.data, [
+    'uuid',
+    'token',
+  ]);
+  return newData;
+}
+
 function mapDevice(device) {
   return _.omit(device, [
     'uuid',
@@ -179,6 +192,19 @@ class Client {
           resolve();
         }
       });
+    });
+  }
+
+  on(callback) {
+    if (!this.connection) {
+      throw new Error('Not connected');
+    }
+    this.connection.on('message', (data) => {
+      if (callback
+          && data.payload
+          && _.indexOf(this.subscriptions, data.payload.source) !== -1) {
+        callback(_.set(mapData(data.payload), 'source', this.uuidIdMap[data.payload.source]));
+      }
     });
   }
 }
