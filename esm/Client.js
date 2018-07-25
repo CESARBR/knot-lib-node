@@ -26,6 +26,10 @@ function connect(hostname, port, uuid, token) {
   });
 }
 
+function toGatewayUuid(uuid) {
+  return `${uuid.substr(0, uuid.length - 4)}0000`;
+}
+
 function mapDevice(device) {
   return _.omit(device, [
     'uuid',
@@ -91,6 +95,8 @@ class Client {
     this.port = port;
     this.uuid = uuid;
     this.token = token;
+    this.subscriptions = [];
+    this.uuidIdMap = {};
   }
 
   async connect() {
@@ -153,6 +159,25 @@ class Client {
         get_data: [{ sensor_id: sensorId }],
       }, () => {
         resolve();
+      });
+    });
+  }
+
+  async subscribe(id) {
+    const uuid = await getDeviceUuid(this.connection, id);
+    const gatewayUuid = toGatewayUuid(uuid);
+    return new Promise((resolve, reject) => {
+      this.connection.subscribe({
+        uuid: gatewayUuid,
+        type: ['sent'],
+      }, (result) => {
+        if (result.error) {
+          reject(result.error);
+        } else {
+          this.uuidIdMap[uuid] = id;
+          this.subscriptions.push(uuid);
+          resolve();
+        }
       });
     });
   }
