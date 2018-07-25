@@ -95,6 +95,15 @@ class Client {
     const devices = await getDevices(this.connection);
     return devices.map(mapDevice);
   }
+
+  async getDevice(id) {
+    const devices = await this.getDevices();
+    const device = devices.find(d => d.id === id);
+    if (!device) {
+      throw new Error('Not found');
+    }
+    return device;
+  }
 }
 
 export { Client }; // eslint-disable-line import/prefer-default-export
