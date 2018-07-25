@@ -144,6 +144,18 @@ class Client {
       });
     });
   }
+
+  async requestData(id, sensorId) {
+    const uuid = await getDeviceUuid(this.connection, id);
+    return new Promise((resolve) => {
+      this.connection.update({
+        uuid,
+        get_data: [{ sensor_id: sensorId }],
+      }, () => {
+        resolve();
+      });
+    });
+  }
 }
 
 export { Client }; // eslint-disable-line import/prefer-default-export
