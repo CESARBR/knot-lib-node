@@ -23,5 +23,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-react": "^7.10.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "meshblu": "^1.34.1"
+  }
 }
