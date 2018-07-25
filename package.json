@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.10",
+    "is-base64": "0.0.6",
     "meshblu": "^1.34.1"
   }
 }
