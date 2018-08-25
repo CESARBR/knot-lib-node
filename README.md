@@ -299,3 +299,69 @@ async function main() {
 }
 main();
 ```
+
+### subscribe(id): Promise&lt;Void&gt;
+
+Subscribes to data published by a device identified by `id`. To listen to the publish events, register a callback with `on()`.
+
+##### Argument
+
+* `id` **String** device ID (KNoT ID).
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  await cloud.subscribe('7e133545550e496a');
+  await cloud.close();
+}
+main();
+```
+
+### on(callback)
+
+Registers a callback to receive device updates after `subcribe()`. A single callback will receive the updates for all devices the user is subscribed to.
+
+##### Argument
+
+* `callback` **Function** callback called with device updates. Receives:
+  * `event` **Object** published event, object in the following format:
+    * `source` **String** device ID (KNoT ID).
+    * `data` **Object** data published by the device, in the following format:
+      * `sensor_id` **Number** sensor ID.
+      * `value` **String|Boolean|Number** value published.
+    * `timestamp` **Date** moment of publication.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  await cloud.subscribe('7e133545550e496a');
+  cloud.on((data) => {
+    console.log(data);
+  });
+}
+main();
+
+// { data: { sensor_id: 2, value: 21 },
+//   timestamp: '2018-08-25T17:46:41.337Z',
+//   source: '7e133545550e496a' }
+```
