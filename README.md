@@ -8,7 +8,7 @@ A client side library that provides access to the KNoT Cloud for Node.js applica
 
 While it isn't available through NPM:
 
-```
+```console
 git clone https://github.com/CESARBR/knot-lib-node
 cd knot-lib-node
 npm install
@@ -17,7 +17,7 @@ npm run build
 
 Then, in your project root:
 
-```
+```console
 npm install --save file:path/to/knot-lib-node
 ```
 
@@ -25,7 +25,7 @@ npm install --save file:path/to/knot-lib-node
 
 `KNoTCloud` connects to http://host:port using the UUID and token as credentials, respectively. Replace this address with your cloud instance and the credentials with valid ones.
 
-```
+```javascript
 const KNoTCloud = require('knot-cloud');
 const cloud = new KNoTCloud(
   'knot-test.cesar.org.br',
@@ -200,4 +200,102 @@ main();
 //               unit: 2,
 //               type_id: 9,
 //               name: 'Card reader' } ] }
+```
+
+### getData(id): Promise&lt;Array&gt;
+
+Gets the last 10 data items published by the device identified by `id`.
+
+##### Argument
+
+* `id` **String** device ID (KNoT ID).
+
+##### Result
+
+* `data_items` **Array** data items published by the device or an empty array. Each data item is an object in the following format:
+  * `data` **Object** data published by the device, in the following format:
+    * `sensor_id` **Number** sensor ID.
+    * `value` **String|Boolean|Number** value published.
+  * `timestamp` **Date** moment of publication.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  console.log(await cloud.getData('7e133545550e496a'));
+  await cloud.close();
+}
+main();
+
+// [ { data: { sensor_id: 2, value: 0 },
+//     timestamp: '2018-08-25T05:29:43.519Z' },
+//   { data: { sensor_id: 1, value: true },
+//     timestamp: '2018-08-25T05:29:43.520Z' },
+//     ... ]
+```
+
+### setData(id, sensorId, value): Promise&lt;Void&gt;
+
+Sets a value to a sensor.
+
+##### Argument
+
+* `id` **String** device ID (KNoT ID).
+* `sensorId` **String** sensor ID.
+* `value` **String|Boolean|Number** value to attribute to the sensor.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  await cloud.setData('7e133545550e496a', 1, false);
+  await cloud.close();
+}
+main();
+```
+
+### requestData(id, sensorId): Promise&lt;Void&gt;
+
+Requests the device to publish its current value of a sensor. The value can be retrieved using `getData()` or by listening to device updates.
+
+##### Argument
+
+* `id` **String** device ID (KNoT ID).
+* `sensorId` **String** sensor ID.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  await cloud.requestData('7e133545550e496a', 1);
+  await cloud.close();
+}
+main();
 ```
