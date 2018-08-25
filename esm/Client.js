@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import request from 'request';
 import meshblu from 'meshblu';
 import isBase64 from 'is-base64';
 
@@ -146,6 +147,26 @@ class Client {
       throw new Error('Not found');
     }
     return device;
+  }
+
+  async getData(id) {
+    const uuid = await getDeviceUuid(this.connection, id);
+    return new Promise((resolve, reject) => {
+      request.get({
+        url: `http://${this.hostname}:${this.port}/data/${uuid}`,
+        headers: {
+          meshblu_auth_uuid: this.uuid,
+          meshblu_auth_token: this.token,
+        },
+        json: true,
+      }, (err, res, body) => {
+        if (err || res.statusCode !== 200) {
+          reject(err || new Error(`Status ${res.statusCode}`));
+        } else {
+          resolve(_.map(body.data, mapData));
+        }
+      });
+    });
   }
 
   async setData(id, sensorId, value) {
