@@ -47,3 +47,157 @@ async function main() {
 }
 main();
 ```
+
+## Methods
+
+### constructor(host, port, uuid, token)
+
+Create a client object that will connect to a KNoT Cloud instance.
+
+#### Arguments
+
+* `host` **String** KNoT Cloud instance host name.
+* `port` **Number** KNoT Cloud instance port.
+* `uuid` **String** User UUID.
+* `token` **String** User token.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+```
+
+### connect(): Promise&lt;Void&gt;
+
+Connects to the KNoT Cloud instance.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+}
+main();
+```
+
+### close(): Promise&lt;Void&gt;
+
+Closes the current connection.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  await cloud.close();
+}
+main();
+```
+
+### getDevices(): Promise&lt;Array&gt;
+
+Gets the devices associated to the connected user.
+
+##### Result
+
+* `devices` **Array** devices registered on the cloud or an empty array. Each device is an object in the following format:
+  * `id` **String** device ID (KNoT ID).
+  * `name` **String** device name.
+  * `online` **Boolean** whether this device is online or not.
+  * `schema` **Array** schema items, each one formed by:
+    * `sensor_id` **Number** sensor ID.
+    * `value_type` **Number** semantic value type (voltage, current, temperature, etc).
+    * `unit` **Number** sensor unit (V, A, W, W, etc).
+    * `type_id` **Number** data value type (boolean, integer, etc).
+    * `name` **String** sensor name.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  console.log(await cloud.getDevices());
+  await cloud.close();
+}
+main();
+
+// [ { online: true,
+//    name: 'Door lock',
+//    id: '7e133545550e496a',
+//    schema: [ [Object], [Object] ] } ]
+```
+
+### getDevice(id): Promise&lt;Object&gt;
+
+Gets the device identified by `id` associated to the connected user.
+
+##### Argument
+
+* `id` **String** device ID (KNoT ID).
+
+##### Result
+
+* `device` **Object** device as described in in [`getDevices()`](#getdevices-promisearray)
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  console.log(await cloud.getDevice('7e133545550e496a'));
+  await cloud.close();
+}
+main();
+
+// { online: true,
+//   name: 'Door lock',
+//   id: '7e133545550e496a',
+//   schema: [ { sensor_id: 1,
+//               value_type: 3,
+//               unit: 0,
+//               type_id: 65521,
+//               name: 'Lock' },
+//             { sensor_id: 2,
+//               value_type: 1,
+//               unit: 2,
+//               type_id: 9,
+//               name: 'Card reader' } ] }
+```
