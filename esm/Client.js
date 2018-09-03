@@ -185,6 +185,18 @@ class Client {
     });
   }
 
+  async setMetaData(id, metaData) {
+    const uuid = await getDeviceUuid(this.connection, id);
+    return new Promise(resolve => {
+      this.connection.update({
+        uuid,
+        metaData
+      }, () => {
+        resolve();
+      });
+    });
+  }
+
   async requestData(id, sensorId) {
     const uuid = await getDeviceUuid(this.connection, id);
     return new Promise((resolve) => {
