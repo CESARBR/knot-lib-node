@@ -62,6 +62,10 @@ function mapDevice(device) {
   ]);
 }
 
+function filterDevice(device) {
+  return device.schema && device.id && device.name;
+}
+
 function getDevices(connection) {
   return new Promise((resolve, reject) => {
     if (!connection) {
@@ -137,7 +141,7 @@ class Client {
 
   async getDevices() {
     const devices = await getDevices(this.connection);
-    return devices.map(mapDevice);
+    return devices.filter(filterDevice).map(mapDevice);
   }
 
   async getDevice(id) {
