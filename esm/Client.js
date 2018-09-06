@@ -154,11 +154,11 @@ class Client {
     return device;
   }
 
-  async getData(id) {
+  async getData(id, limit = 10, start = '', finish = '') {
     const uuid = await getDeviceUuid(this.connection, id);
     return new Promise((resolve, reject) => {
       request.get({
-        url: `http://${this.hostname}:${this.port}/data/${uuid}`,
+        url: `http://${this.hostname}:${this.port}/data/${uuid}?limit=${limit}&start=${start}&finish=${finish}`,
         headers: {
           meshblu_auth_uuid: this.uuid,
           meshblu_auth_token: this.token,
