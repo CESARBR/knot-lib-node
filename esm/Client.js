@@ -102,6 +102,8 @@ function parseValue(value) {
       throw new Error('Supported types are boolean, number or Base64 strings');
     }
     return value;
+  } else if (typeof(value) === 'boolean') {
+    return value;
   }
 
   return parseFloat(value);
