@@ -86,7 +86,7 @@ function getDevices(connection) {
 
 async function getDeviceUuid(connection, id) {
   const devices = await getDevices(connection);
-  const device = devices.find(d => d.id === id);
+  const device = devices.find(d => d.id.toLowerCase() === id.toLowerCase());
   if (!device) {
     throw new Error('Not found');
   }
@@ -147,7 +147,7 @@ class Client {
 
   async getDevice(id) {
     const devices = await this.getDevices();
-    const device = devices.find(d => d.id === id);
+    const device = devices.find(d => d.id.toLowerCase() === id.toLowerCase());
     if (!device) {
       throw new Error('Not found');
     }
