@@ -202,13 +202,16 @@ main();
 //               name: 'Card reader' } ] }
 ```
 
-### getData(id): Promise&lt;Array&gt;
+### getData(id[,limit, start, finish]): Promise&lt;Array&gt;
 
 Gets the last 10 data items published by the device identified by `id`.
 
 ##### Argument
 
 * `id` **String** device ID (KNoT ID).
+* `limit` **String** (Optional) the maximum number of data that you want, default=`10` (the value `*` returns all data)
+* `start` **String** (Optional) the start date that you want your set of data (format=`YYYY/MM/DD HH:MM`)
+* `finish` **String** (Optional) the finish date that you want your set of data (format=`YYYY/MM/DD HH:MM`)
 
 ##### Result
 
