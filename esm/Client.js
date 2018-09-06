@@ -101,6 +101,7 @@ function parseValue(value) {
     if (!isBase64(value)) {
       throw new Error('Supported types are boolean, number or Base64 strings');
     }
+  } else if (typeof value === 'boolean') {
     return value;
   }
 
