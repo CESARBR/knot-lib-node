@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a717f4d_67d13049",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T21:23:55Z",
+      "side": 1,
+      "message": "registered devices",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "a089604e10831fe69b2762590df86681d705c0a0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5579839f_0d704b51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T21:23:55Z",
+      "side": 1,
+      "message": "Add a dot (.) in the end of the message.",
+      "range": {
+        "startLine": 9,
+        "startChar": 34,
+        "endLine": 9,
+        "endChar": 40
+      },
+      "revId": "a089604e10831fe69b2762590df86681d705c0a0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "042a087a_60cb10c7",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T21:23:55Z",
+      "side": 1,
+      "message": "When we filter something, it is based on a condition. Which condition is this?\n\nThe condition should be name of the method, as it isn\u0027t filtering the device. The filter is implemented elsewhere.",
+      "range": {
+        "startLine": 65,
+        "startChar": 9,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "a089604e10831fe69b2762590df86681d705c0a0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
