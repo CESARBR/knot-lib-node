@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "427b1ecf_a9890700",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T22:10:51Z",
+      "side": 1,
+      "message": "You can omit function if you write getData()",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "a5c8fd6c58722370add874feba125bb6888012ea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9da15559_83899420",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T22:10:51Z",
+      "side": 1,
+      "message": "arguments to",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "a5c8fd6c58722370add874feba125bb6888012ea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e49aa50_03ed795e",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T22:10:51Z",
+      "side": 1,
+      "message": "Mark each one of the arguments below as optional instead of creating a new section.",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 23
+      },
+      "revId": "a5c8fd6c58722370add874feba125bb6888012ea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71a3a55c_2e54c85d",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T22:10:51Z",
+      "side": 1,
+      "message": "Could be **String** (Optional) the ...",
+      "range": {
+        "startLine": 215,
+        "startChar": 10,
+        "endLine": 215,
+        "endChar": 21
+      },
+      "revId": "a5c8fd6c58722370add874feba125bb6888012ea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
