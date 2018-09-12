@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d329424_d6c7d21d",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T22:07:26Z",
+      "side": 1,
+      "message": "convert this to lowercase as well, so that we don\u0027t depend on the cloud implementation",
+      "range": {
+        "startLine": 89,
+        "startChar": 35,
+        "endLine": 89,
+        "endChar": 39
+      },
+      "revId": "abb8a16ecc1d06ecf4be14e497e6a917486e5519",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45ffa080_d61c48cc",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T22:07:26Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 151,
+        "startChar": 37,
+        "endLine": 151,
+        "endChar": 41
+      },
+      "revId": "abb8a16ecc1d06ecf4be14e497e6a917486e5519",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
