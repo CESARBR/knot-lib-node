@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "364be83c_5ef978b8",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T22:01:33Z",
+      "side": 1,
+      "message": "Check the lint issues.",
+      "revId": "bb83647cd9f36ad9cea727ab6c336a6affbe9133",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
