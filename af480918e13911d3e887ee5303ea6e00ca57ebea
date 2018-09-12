@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c70e4fbb_f46fc882",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T21:21:31Z",
+      "side": 1,
+      "message": "setMetada()\n\nmetadata could be confused with project metadata. You are adding a method and not some kind of metadata.",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "af480918e13911d3e887ee5303ea6e00ca57ebea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5965dbbd_8a421375",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T21:21:31Z",
+      "side": 1,
+      "message": "metadata",
+      "range": {
+        "startLine": 188,
+        "startChar": 24,
+        "endLine": 188,
+        "endChar": 32
+      },
+      "revId": "af480918e13911d3e887ee5303ea6e00ca57ebea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d246c3cd_f97e99dc",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T21:21:31Z",
+      "side": 1,
+      "message": "Metadata\n\nmetadata is a word",
+      "range": {
+        "startLine": 188,
+        "startChar": 11,
+        "endLine": 188,
+        "endChar": 19
+      },
+      "revId": "af480918e13911d3e887ee5303ea6e00ca57ebea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "983b4b1d_9df72adf",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2018-09-12T21:21:31Z",
+      "side": 1,
+      "message": "metadata",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 16
+      },
+      "revId": "af480918e13911d3e887ee5303ea6e00ca57ebea",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
