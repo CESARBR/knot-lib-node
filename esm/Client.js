@@ -190,24 +190,24 @@ class Client {
     });
   }
 
-  async setMetadata(id, metadata) {
-    const uuid = await getDeviceUuid(this.connection, id);
-    return new Promise((resolve) => {
-      this.connection.update({
-        uuid,
-        metadata,
-      }, () => {
-        resolve();
-      });
-    });
-  }
-
   async requestData(id, sensorId) {
     const uuid = await getDeviceUuid(this.connection, id);
     return new Promise((resolve) => {
       this.connection.update({
         uuid,
         get_data: [{ sensor_id: sensorId }],
+      }, () => {
+        resolve();
+      });
+    });
+  }
+
+  async setMetadata(id, metadata) {
+    const uuid = await getDeviceUuid(this.connection, id);
+    return new Promise((resolve) => {
+      this.connection.update({
+        uuid,
+        metadata,
       }, () => {
         resolve();
       });
