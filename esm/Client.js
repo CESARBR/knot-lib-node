@@ -128,6 +128,14 @@ function parseSetDataInput(data) {
   return parsedData;
 }
 
+function parseRequestDataInput(sensors) {
+  if (!_.isArrayLikeObject(sensors)) {
+    throw new Error('sensors must be an array');
+  }
+
+  return _.map(sensors, sensorId => ({ sensor_id: sensorId }));
+}
+
 class Client {
   constructor(hostname, port, uuid, token) {
     this.hostname = hostname;
@@ -207,12 +215,13 @@ class Client {
     });
   }
 
-  async requestData(id, sensorId) {
+  async requestData(id, sensors) {
+    const parsedSensors = parseRequestDataInput(sensors);
     const uuid = await getDeviceUuid(this.connection, id);
     return new Promise((resolve) => {
       this.connection.update({
         uuid,
-        get_data: [{ sensor_id: sensorId }],
+        get_data: parsedSensors,
       }, () => {
         resolve();
       });
