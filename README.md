@@ -6,19 +6,8 @@ A client side library that provides access to the KNoT Cloud for Node.js applica
 
 ## Install
 
-While it isn't available through NPM:
-
 ```console
-git clone https://github.com/CESARBR/knot-lib-node
-cd knot-lib-node
-npm install
-npm run build
-```
-
-Then, in your project root:
-
-```console
-npm install --save file:path/to/knot-lib-node
+npm install --save knot-cloud
 ```
 
 ## Quickstart
