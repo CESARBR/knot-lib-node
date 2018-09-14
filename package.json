@@ -1,17 +1,22 @@
 {
   "name": "knot-cloud",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "KNoT Cloud library for Node.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CESARBR/knot-lib-node.git"
   },
+  "contributors": [
+    "Thiago Cardoso <thiago.figuerdo@cesar.org.br>",
+    "Ramon Ribeiro <rhpr@cesar.org.br>"
+  ],
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "build": "babel esm --out-dir cjs"
+    "build": "babel esm --out-dir cjs",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
