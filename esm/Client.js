@@ -108,6 +108,26 @@ function parseValue(value) {
   return parseFloat(value);
 }
 
+function parseSetDataInput(data) {
+  if (!_.isArrayLikeObject(data)) {
+    throw new Error('data must be an array');
+  }
+
+  const parsedData = [];
+  for (let i = 0; i < data.length; i += 1) {
+    const item = data[i];
+    if (item.sensorId === null
+      || item.sensorId === undefined
+      || item.value === null
+      || item.value === undefined) {
+      throw new Error('data must contain only { sensorId, value } objects');
+    }
+    const parsedValue = parseValue(item.value); // throws if value is invalid
+    parsedData.push({ sensor_id: item.sensorId, value: parsedValue });
+  }
+  return parsedData;
+}
+
 class Client {
   constructor(hostname, port, uuid, token) {
     this.hostname = hostname;
@@ -174,16 +194,13 @@ class Client {
     });
   }
 
-  async setData(id, sensorId, value) {
-    const parsedValue = parseValue(value); // throws if value is invalid
+  async setData(id, data) {
+    const parsedData = parseSetDataInput(data); // throws if invalid
     const uuid = await getDeviceUuid(this.connection, id);
     return new Promise((resolve) => {
       this.connection.update({
         uuid,
-        set_data: [{
-          sensor_id: sensorId,
-          value: parsedValue,
-        }],
+        set_data: parsedData,
       }, () => {
         resolve();
       });

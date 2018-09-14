@@ -246,15 +246,16 @@ main();
 //     ... ]
 ```
 
-### setData(id, sensorId, value): Promise&lt;Void&gt;
+### setData(id, data): Promise&lt;Void&gt;
 
-Sets a value to a sensor.
+Sets values to sensors.
 
 ##### Arguments
 
 * `id` **String** device ID (KNoT ID).
-* `sensorId` **String** sensor ID.
-* `value` **String|Boolean|Number** value to attribute to the sensor.
+* `data` **Array** array of sensor ID-value pairs, as follows:
+  * `sensorId` **Number** sensor ID.
+  * `value` **String|Boolean|Number** value to attribute to the sensor. Strings must be Base64 encoded.
 
 #### Example
 
@@ -269,7 +270,7 @@ const cloud = new KNoTCloud(
 
 async function main() {
   await cloud.connect();
-  await cloud.setData('7e133545550e496a', 1, false);
+  await cloud.setData('7e133545550e496a', [{ sensorId: 1, value: false }]);
   await cloud.close();
 }
 main();
