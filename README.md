@@ -276,14 +276,14 @@ async function main() {
 main();
 ```
 
-### requestData(id, sensorId): Promise&lt;Void&gt;
+### requestData(id, sensors): Promise&lt;Void&gt;
 
-Requests the device to publish its current value of a sensor. The value can be retrieved using `getData()` or by listening to device updates.
+Requests the device to publish its current value a set of sensors. The value can be retrieved using `getData()` or by listening to device updates.
 
 ##### Arguments
 
 * `id` **String** device ID (KNoT ID).
-* `sensorId` **String** sensor ID.
+* `sensors` **Array** an array of sensor IDs (**Number**).
 
 #### Example
 
@@ -298,7 +298,7 @@ const cloud = new KNoTCloud(
 
 async function main() {
   await cloud.connect();
-  await cloud.requestData('7e133545550e496a', 1);
+  await cloud.requestData('7e133545550e496a', [1]);
   await cloud.close();
 }
 main();
