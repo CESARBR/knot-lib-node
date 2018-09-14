@@ -303,6 +303,34 @@ async function main() {
 main();
 ```
 
+### setMetadata(id, metadata): Promise&lt;Void&gt;
+
+Sets the device metadata. It will update the entire object with the contents of metadata. To update a single item inside metadata, fetch it first, using `getDevice()`.
+
+##### Arguments
+
+* `id` **String** device ID (KNoT ID).
+* `metadata` **Any** device metadata.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  await cloud.setMetadata('7e133545550e496a', { room: { name: 'Lula Cardoso Ayres', location: 'Tiradentes' } });
+  await cloud.close();
+}
+main();
+```
+
 ### subscribe(id): Promise&lt;Void&gt;
 
 Subscribes to data published by a device identified by `id`. To listen to the publish events, register a callback with `on()`.
