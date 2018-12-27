@@ -320,6 +320,89 @@ async function main() {
 }
 main();
 ```
+### getConfig(id): Promise&lt;Array&gt;
+
+Gets the configuration for all the sensors of the device identified by `id`.
+
+##### Arguments
+
+* `id` **String** device ID (KNoT ID).
+
+##### Result
+
+* `config` **Array** the configurarion for the items of the device or an empty array. Each config item is an object in the following format:
+  * `sensorId` **Number** sensor ID.
+  * `eventFlags` **Number** The combination (sum) of the event flags that trigger sendData events.
+  * `time` **Number** Optional. The interval in seconds between two consecutive data reports for the KNoT item.
+  * `lowerThreshold` **Number** Optional. The lower limit that triggers a data report for the KNoT item.
+  * `upperThreshold` **Number** Optional. The upper limit that triggers a data report for the KNoT item.
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+
+async function main() {
+  await cloud.connect();
+  console.log(await cloud.getConfig('7e133545550e496a'));
+  await cloud.close();
+}
+main();
+
+// [ { sensorId: 1, eventFlags: 1, time: 10 },
+//   { sensorId: 2, eventFlags: 2, lowerThreshold: 20 },
+//   { sensorId: 3, eventFlags: 4, upperThreshold: 80 },
+//   { sensorId: 4, eventFlags: 8},
+//   { sensorId: 5, eventFlags: 5, time: 30 },
+//     ... ]
+```
+
+### setConfig(id, config): Promise&lt;Void&gt;
+
+Sets sensors configuration. No verification is done at library level, the user is responsible for properly formating the message.
+
+##### Arguments
+
+* `id` **String** device ID (KNoT ID).
+* `config` **Array** array of sensor ID, flags and values, as follows:
+  * `sensorId` **Number** Required. Sensor ID.
+  * `eventFlags` **Number** Required. The indicator of which behaviors are expected. It's the sum of the corresponding flag value of each desired behavior, as shown on table below.
+  * `time` **Number** value to attribute to the sensor.
+  * `lowerThreshold` **Number** value to attribute to the sensor.
+  * `upperThreshold` **Number** value to attribute to the sensor.
+
+|Flag Alias|Flag Value|Description|
+|---|---|---|
+|time|1|Send data every period of time, in seconds. Must be greater than 0.|
+|lowerThreshold|2|Send data every time that the item is below a threshold. If combined with upperThreshold, it is mandatory that lowerThreshold is smaller than upperThreshold.|
+|upperThreshold|4|Send data every time that the item is above a threshold. If combined with lowerThreshold, it is mandatory that upperThreshold is greater than lowerThreshold.|
+|change|8|Send data every time the item changes its value. Does not require any additional field.|
+
+#### Example
+
+```javascript
+const KNoTCloud = require('knot-cloud');
+const cloud = new KNoTCloud(
+  'knot-test.cesar.org.br',
+  3000,
+  '78159106-41ca-4022-95e8-2511695ce64c',
+  'd5265dbc4576a88f8654a8fc2c4d46a6d7b85574',
+);
+const { EventFlags } = cloud;
+
+async function main() {
+  await cloud.connect();
+  await cloud.setConfig('78B256AE701477C2', [{ "sensorId": 1, "eventFlags": EventFlags.time, "time": 20 }]);
+  await cloud.close();
+}
+main();
+```
 
 ### subscribe(id): Promise&lt;Void&gt;
 

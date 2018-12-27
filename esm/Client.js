@@ -136,6 +136,42 @@ function parseRequestDataInput(sensors) {
   return _.map(sensors, sensorId => ({ sensor_id: sensorId }));
 }
 
+// KNoT protocol expects keys to be in sneak_case and some with slightly
+// different text.
+function encodeToKNoT(value, key) {
+  switch (key) {
+    case 'sensorId':
+      return 'sensor_id';
+    case 'eventFlags':
+      return 'event_flags';
+    case 'time':
+      return 'time_sec';
+    case 'lowerThreshold':
+      return 'lower_limit';
+    case 'upperThreshold':
+      return 'upper_limit';
+    default:
+      return key;
+  }
+}
+
+function decodeFromKNoT(value, key) {
+  switch (key) {
+    case 'sensor_id':
+      return 'sensorId';
+    case 'event_flags':
+      return 'eventFlags';
+    case 'time_sec':
+      return 'time';
+    case 'lower_limit':
+      return 'lowerThreshold';
+    case 'upper_limit':
+      return 'upperThreshold';
+    default:
+      return key;
+  }
+}
+
 class Client {
   constructor(hostname, port, uuid, token) {
     this.hostname = hostname;
@@ -144,6 +180,13 @@ class Client {
     this.token = token;
     this.subscriptions = [];
     this.uuidIdMap = {};
+    this.EventFlags = {
+      none: 0,
+      time: 1,
+      lowerThreshold: 2,
+      upperThreshold: 4,
+      change: 8,
+    };
   }
 
   async connect() {
@@ -236,6 +279,26 @@ class Client {
         metadata,
       }, () => {
         resolve();
+      });
+    });
+  }
+
+  async getConfig(id) {
+    const device = await this.getDevice(id);
+    const config = _.map(device.config, element => _.mapKeys(element, decodeFromKNoT));
+
+    return config;
+  }
+
+  async setConfig(id, config) {
+    const uuid = await getDeviceUuid(this.connection, id);
+    const configKNoT = _.map(config, element => _.mapKeys(element, encodeToKNoT));
+    return new Promise((resolve) => {
+      this.connection.update({
+        uuid,
+        config: configKNoT,
+      }, () => {
+        resolve(configKNoT);
       });
     });
   }
