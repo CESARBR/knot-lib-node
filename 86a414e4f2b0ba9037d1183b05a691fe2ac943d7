@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4ef0817_62cde841",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1013096
+      },
+      "writtenOn": "2018-12-28T20:35:07Z",
+      "side": 1,
+      "message": "snake_case",
+      "range": {
+        "startLine": 139,
+        "startChar": 39,
+        "endLine": 139,
+        "endChar": 49
+      },
+      "revId": "86a414e4f2b0ba9037d1183b05a691fe2ac943d7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd1256bb_96c5cffb",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1013096
+      },
+      "writtenOn": "2018-12-28T20:35:07Z",
+      "side": 1,
+      "message": "In think in this way, the object will be created in every instance. I know that ideally we should have just one instance but sounds to me more correct we have a const variable out of the class and export it just when we need to use setConfig.",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 189,
+        "endChar": 6
+      },
+      "revId": "86a414e4f2b0ba9037d1183b05a691fe2ac943d7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
