@@ -45,6 +45,30 @@
       "revId": "86a414e4f2b0ba9037d1183b05a691fe2ac943d7",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9a10819_54cb9b32",
+        "filename": "esm/Client.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1013086
+      },
+      "writtenOn": "2019-02-04T15:07:48Z",
+      "side": 1,
+      "message": "class constants can be defined outside the class definition, e.g.:\n\nclass Client {\n  ...\n}\n\nClient.EventFlags \u003d { ... };\n\nAlso, I\u0027m not sure if in JS there is a convention for enumerations, but I\u0027m used to have it starting with an upper case letter, e.g. EventFlags.None.",
+      "parentUuid": "dd1256bb_96c5cffb",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 189,
+        "endChar": 6
+      },
+      "revId": "86a414e4f2b0ba9037d1183b05a691fe2ac943d7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
     }
   ]
 }
