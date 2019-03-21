@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import request from 'request';
-import meshblu from 'meshblu';
+import meshblu from '@cesarbr/meshblu';
 import isBase64 from 'is-base64';
 
 function createConnection(hostname, port, uuid, token) {
