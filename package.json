@@ -29,9 +29,9 @@
     "eslint-plugin-react": "^7.10.0"
   },
   "dependencies": {
+    "@cesarbr/meshblu": "^1.34.3",
     "is-base64": "0.0.6",
     "lodash": "^4.17.10",
-    "meshblu": "^1.34.1",
     "request": "^2.88.0"
   }
 }
